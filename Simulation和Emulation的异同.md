@@ -1,12 +1,50 @@
-### Simulation和Emulation的异同
+## Simulation and Emulation
 
-Simulation：通过计算机模拟真实世界的过程或系统。
+### Simulation
 
-Emulation：在一种计算机系统上运行另一种计算机系统。
+Simulation主要指通过计算机模拟真实世界的过程或系统。
 
-Emulation和Simulation之间的区别在于它们的目的和方法。Emulation旨在复制另一个系统的行为，以便可以在不同的硬件或软件环境中运行该系统，而Simulation则旨在模拟现实世界的过程或系统，以便可以预测它们可能会如何行动或反应。
+Simulation的重要过程包括模型的建立、执行、优化等。下图表示了一个包括Simulation的模型验证细化周期。这也说明了Simulation的工作主要围绕着仿真模型展开。
 
-虽然Emulation和Simulation有着不同的目的，但它们之间也存在相互关系。例如，在进行模拟时，需要对模拟环境进行仿真，以便能够精确地模拟真实环境中的各种因素。此外，在进行系统仿真时，可能需要使用某些模拟工具来模拟系统中的各个组成部分，这就涉及到Emulation的概念。因此，Emulation和Simulation并非孤立的概念，它们之间存在紧密的联系和相互作用。
+一个典型的Simulation样例是天气预报。天气预报模型会根据可观察到的参数进行调整，并基于已有的信息对短期天气做出预测。
+
+![img](./assets/Simulation.webp)
+
+### Emulation
+
+Emulation的目标是在一种计算机系统上运行另一种计算机系统。
+
+Emulator实际上执行被模拟的进程或系统，因此Emulation不仅适用于真实世界模型，还可以被用于复制具体系统的运行。
+
+基于上述特征，Emulator经常在软硬件结合的环境中工作。一个常见的Emulator的例子就是虚拟机，它实现了在物理机限制的环境中运行使用另一种架构或系统的应用程序。
+
+![img](./assets/Emulation-1.webp)
+
+如图所示，Emulator通常基于仿真框架来创建，而仿真框架的实现则要求对仿真目标软硬件环境的数字化描述。
+
+### Simulation&Emulation的异同
+
+Simulation和Emulation之间的区别主要在于它们的目的和方法。Simulation则旨在模拟现实世界的过程或系统，以便可以预测它们可能会如何行动或反应，而Emulation旨在复制另一个系统的行为，以便可以在不同的硬件或软件环境中运行该系统。
+
+Simulation专注于系统模型，旨在模拟导致最终结果的某些条件和操作。Emulation提供了一个重新创建的环境来观察这些条件并像在原始系统中一样执行这些操作。
+
+<img src="./assets/quicklatex.com-b7d099becda96cec3ebc41b050d36a3c_l3.svg" alt="quicklatex.com-b7d099becda96cec3ebc41b050d36a3c_l3" style="zoom:150%;" />
+
+虽然Simulation和Emulation有着不同的目的，但它们之间也存在相互关系。例如，在进行模拟时，需要对模拟环境进行仿真，以便能够精确地模拟真实环境中的各种因素。此外，在进行系统仿真时，可能需要使用某些模拟工具来模拟系统中的各个组成部分，这就涉及到Emulation的概念。因此，Simulation和Emulation并非孤立的概念，它们之间存在紧密的联系和相互作用。
+
+### Simulation和Emulation结合
+
+> A. Sobeih et al., "J-Sim: a simulation and emulation environment for wireless sensor networks," in IEEE Wireless Communications, vol. 13, no. 4, pp. 104-119, Aug. 2006, doi: 10.1109/MWC.2006.1678171. 【SCI I】
+
+作者在这篇文章中按照建模、模拟（Simulation）、仿真框架（Emulation framework）的流程，构建了组合网络仿真环境 J-Sim。
+
+在测试方面，在 J–Sim 和 ns-2 中模拟 WSN 场景来凭经验评估模拟框架【Emulation】。然后通过进行大规模成熟的未来作战系统 (FCS) 模拟【Emulation】，在现实场景中演示 WSN 模拟框架的使用（指将虚拟仿真环境与少量真实硬件设备集成在一起，以方便对真实网络进行性能评估。）【Emulation】。
+
+> V. Sanchez-Aguero, F. Valera, B. Nogales, L. F. Gonzalez and I. Vidal, "VENUE: Virtualized Environment for Multi-UAV Network Emulation," in IEEE Access, vol. 7, pp. 154659-154671, 2019, doi: 10.1109/ACCESS.2019.2949119.【JCR Q2】
+
+这篇文章的主要内容是VENUE（Virtualized Environment for multi-UAV network emulation，虚拟环境多无人机网络仿真）平台的构建，VENUE涵盖了从模拟【Simulation】/仿真阶段【Emulation】到真实的设备集成阶段的所有工作。
+
+![image-20230407222929914](./assets/image-20230407222929914.png)
 
 ### 例：女巫攻击——Simulation
 
@@ -32,5 +70,5 @@ Emulation和Simulation之间的区别在于它们的目的和方法。Emulation�
 
 综上所述，要将Simulation下的女巫攻击环境迁移到类似跨架构固件检测的Emulation环境中，需要考虑不同的场景和目标：
 
-1. 女巫攻击场景中的程序否依托固件运行
-2. 女巫攻击环境是模拟恶意节点创建虚假身份来欺骗系统的一种仿真环境，而跨架构固件检测则是通过模拟不同处理器架构的设备来检测固件中的漏洞和恶意代码。两者之间存在着较大的内容、目标差别。
+1. 需要模拟能够发射无线电磁波的设备，并将其与受害者的计算机建立连接，在发射无线电磁波的同时监测并窃取接收到的数据，软件定义无线电设备是一种选择。
+2. 可能还存在其他困难，需要继续研究。
